@@ -118,23 +118,73 @@ func arrayCalc(op : ([Int]) -> Int, arr:[Int]) -> Int {
 }
 
 //Tests
-print("Testing add")
+print("Testing arrayAdd")
 print(arrayCalc(arrayAdd, arr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 
-print("Testing sub")
+print("Testing arrayMul")
 print(arrayCalc(arrayMul, arr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 
-print("Testing count")
+print("Testing arrayCount")
 print(arrayCalc(arrayCount, arr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 
-print("Testing avg")
+print("Testing arrayAvg")
 print(arrayCalc(arrayAvg, arr: [1, 2, 3, 4, 5, 6, 7, 8, 9]))
 
 
 //------------------------
 
 //tupleAdd
+func tupleAdd(firstTuple: (first: Double?, second: Double?), secondTuple: (first: Double?, second: Double?)) -> (Double, Double) {
+    var result = (0.0, 0.0)
+    
+    if firstTuple.first != nil {
+        result.0 += firstTuple.first!
+    }
+    
+    if secondTuple.first != nil {
+        result.0 += secondTuple.first!
+    }
+    
+    if firstTuple.second != nil {
+        result.1 += firstTuple.second!
+    }
+    
+    if secondTuple.second != nil {
+        result.1 += secondTuple.second!
+    }
+    
+    return result
+}
 
 //tupleSubtract
+func tupleSub(firstTuple: (first: Double?, second: Double?), secondTuple: (first: Double?, second: Double?)) -> (Double, Double) {
+    var result = (0.0, 0.0)
+    
+    if firstTuple.first != nil {
+        result.0 = firstTuple.first!
+    }
+    
+    if secondTuple.first != nil {
+        result.0 -= secondTuple.first!
+    }
+    
+    if firstTuple.second != nil {
+        result.1 = firstTuple.second!
+    }
+    
+    if secondTuple.second != nil {
+        result.1 -= secondTuple.second!
+    }
+    
+    return result
+}
 
 //Tests
+print("Testing tupleAdd")
+print(tupleAdd((1, 7), secondTuple: (5, 3)))
+print(tupleAdd((8, nil), secondTuple: (nil, 3)))
+
+print("Testing tupleSub")
+print(tupleSub((1, 7), secondTuple: (5, 3)))
+print(tupleSub((8, nil), secondTuple: (nil, 3)))
+

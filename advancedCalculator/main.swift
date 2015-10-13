@@ -45,10 +45,9 @@ func div(first:Double, second:Double) -> Double {
 }
 
 //Generic(function, int1, int2)
-func calculate(op : (Double, Double) -> Double, first:Double, second:Double) -> Double {
-    return op(first, second);
+func calculate(op : (Double, Double) -> Double, first:Int, second:Int) -> Double {
+    return op(Double(first), Double(second));
 }
-
 
 //let firstInput = input()
 //var numbers = firstInput.componentsSeparatedByString(" ")
@@ -82,14 +81,55 @@ print(calculate(div, first: -4729, second: -102))
 //------------------------
 
 //arrayAdd
+func arrayAdd(values:[Int]) -> Int {
+    var total : Int = 0;
+    for val in values {
+        total += val
+    }
+    return total;
+}
 
 //arrayMul
+func arrayMul(values:[Int]) -> Int {
+    var total : Int = 1;
+    for val in values {
+        total *= val
+    }
+    return total;
+}
 
 //arrayCount
+func arrayCount(values:[Int]) -> Int {
+    return values.count
+}
 
 //arrayAvg
+func arrayAvg(values:[Int]) -> Int {
+    var total : Int = 0;
+    for val in values {
+        total += val
+    }
+    return total / values.count;
+}
 
 //arrayGeneric
+func arrayCalc(op : ([Int]) -> Int, arr:[Int]) -> Int {
+    return op(arr);
+}
+
+//Tests
+print("Testing add")
+print(arrayCalc(arrayAdd, arr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+
+print("Testing sub")
+print(arrayCalc(arrayMul, arr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+
+print("Testing count")
+print(arrayCalc(arrayCount, arr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+
+print("Testing avg")
+print(arrayCalc(arrayAvg, arr: [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+
 
 //------------------------
 
@@ -97,3 +137,4 @@ print(calculate(div, first: -4729, second: -102))
 
 //tupleSubtract
 
+//Tests

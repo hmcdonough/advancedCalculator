@@ -154,24 +154,29 @@ print("Testing tupleSub")
 print(tupleSub((1, 7), secondTuple: (5, 3)))
 print(tupleSub((8, nil), secondTuple: (nil, 3)))
 
-func pointAdd(one: [String: Double?], two: [String: Double?]) -> [String: Double] {
+func pointAdd(one: [String: Double?]?, two: [String: Double?]?) -> [String: Double] {
     var result = Dictionary<String, Double>()
     
-    for (str, num) in one {
-        result[str] = 0
-        if num != nil {
-            result[str]! += num!
+    if one != nil {
+        for (str, num) in one! {
+            result[str] = 0
+            if num != nil {
+                result[str]! += num!
+            }
         }
     }
     
-    for (str, num) in two {
-        if result[str] == nil {
-            result[str] = 0
-        }
-        if num != nil {
-            result[str]! += num!
+    if two != nil {
+        for (str, num) in two! {
+            if result[str] == nil {
+                result[str] = 0
+            }
+            if num != nil {
+                result[str]! += num!
+            }
         }
     }
+
     return result
 }
 
@@ -179,25 +184,31 @@ print("pointAdd Tests")
 print(pointAdd(["x" : 1, "y": 2, "z": 3], two: ["x": 4, "y": 5, "z": 6]))
 print(pointAdd(["x" : 1, "y": nil, "z": 3], two: ["x": 4, "y": 5, "z": nil]))
 print(pointAdd(["x" : 1, "z": 3], two: ["x": 4, "y": 5]))
+print(pointAdd(["x" : 1, "z": 3], two: nil))
 
-func pointSub(one: [String: Double?], two: [String: Double?]) -> [String: Double] {
+func pointSub(one: [String: Double?]?, two: [String: Double?]?) -> [String: Double] {
     var result = Dictionary<String, Double>()
     
-    for (str, num) in one {
-        result[str] = 0
-        if num != nil {
-            result[str]! += num!
+    if one != nil {
+        for (str, num) in one! {
+            result[str] = 0
+            if num != nil {
+                result[str]! += num!
+            }
+        }
+    }
+
+    if two != nil {
+        for (str, num) in two! {
+            if result[str] == nil {
+                result[str] = 0
+            }
+            if num != nil {
+                result[str]! -= num!
+            }
         }
     }
     
-    for (str, num) in two {
-        if result[str] == nil {
-            result[str] = 0
-        }
-        if num != nil {
-            result[str]! -= num!
-        }
-    }
     return result
 }
 
@@ -205,3 +216,4 @@ print("pointAdd Tests")
 print(pointSub(["x" : 1, "y": 2, "z": 3], two: ["x": 4, "y": 5, "z": 6]))
 print(pointSub(["x" : 1, "y": nil, "z": 3], two: ["x": 4, "y": 5, "z": nil]))
 print(pointSub(["x" : 1, "z": 3], two: ["x": 4, "y": 5]))
+print(pointSub(["x" : 1, "z": 3], two: nil))

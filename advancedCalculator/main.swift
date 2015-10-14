@@ -8,53 +8,25 @@
 
 import Foundation
 
-print("Hello, World!")
-
-func input() -> String {
-    let keyboard = NSFileHandle.fileHandleWithStandardInput()
-    let inputData = keyboard.availableData
-    let result = NSString(data: inputData, encoding:NSUTF8StringEncoding) as! String
-    return result.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())
-}
-
-func convert(incoming:String) -> Double {
-    if incoming.rangeOfString("-") != nil {
-        return NSNumberFormatter().numberFromString(incoming)!.doubleValue
-    }
-    return NSNumberFormatter().numberFromString(incoming)!.doubleValue
-}
-
-//add
 func add(first:Double, second:Double) -> Double {
     return first + second;
 }
 
-//subtract
 func sub(first:Double, second:Double) -> Double {
     return first - second;
 }
 
-//multiply
 func mul(first:Double, second:Double) -> Double {
     return first * second;
 }
 
-//divide
 func div(first:Double, second:Double) -> Double {
     return first / second;
 }
 
-//Generic(function, int1, int2)
 func calculate(op : (Double, Double) -> Double, first:Int, second:Int) -> Double {
     return op(Double(first), Double(second));
 }
-
-//let firstInput = input()
-//var numbers = firstInput.componentsSeparatedByString(" ")
-//let calc = input()
-//let secondInput = input()
-//let result = calculate(calc, first: convert(firstInput), second: convert(secondInput))
-//print("Result: \(result)");
 
 //Tests
 print("Testing add")
@@ -80,7 +52,6 @@ print(calculate(div, first: -4729, second: -102))
 
 //------------------------
 
-//arrayAdd
 func arrayAdd(values:[Int]) -> Int {
     var total : Int = 0;
     for val in values {
@@ -89,7 +60,6 @@ func arrayAdd(values:[Int]) -> Int {
     return total;
 }
 
-//arrayMul
 func arrayMul(values:[Int]) -> Int {
     var total : Int = 1;
     for val in values {
@@ -98,12 +68,10 @@ func arrayMul(values:[Int]) -> Int {
     return total;
 }
 
-//arrayCount
 func arrayCount(values:[Int]) -> Int {
     return values.count
 }
 
-//arrayAvg
 func arrayAvg(values:[Int]) -> Int {
     var total : Int = 0;
     for val in values {
@@ -112,7 +80,6 @@ func arrayAvg(values:[Int]) -> Int {
     return total / values.count;
 }
 
-//arrayGeneric
 func arrayCalc(op : ([Int]) -> Int, arr:[Int]) -> Int {
     return op(arr);
 }
@@ -132,7 +99,6 @@ print(arrayCalc(arrayAvg, arr: [1, 2, 3, 4, 5, 6, 7, 8, 9]))
 
 
 //------------------------
-
 //tupleAdd
 func tupleAdd(firstTuple: (first: Double?, second: Double?), secondTuple: (first: Double?, second: Double?)) -> (Double, Double) {
     var result = (0.0, 0.0)
@@ -188,3 +154,46 @@ print("Testing tupleSub")
 print(tupleSub((1, 7), secondTuple: (5, 3)))
 print(tupleSub((8, nil), secondTuple: (nil, 3)))
 
+func pointAdd(one: [String: Double?], two: [String: Double?]) -> [String: Double] {
+    var result = Dictionary<String, Double>()
+    
+    for (str, num) in one {
+        result[str] = 0
+        if num != nil {
+            result[str]! += num!
+        }
+    }
+    
+    for (str, num) in two {
+        if num != nil {
+            result[str]! += num!
+        }
+    }
+    return result
+}
+
+print("pointAdd Tests")
+print(pointAdd(["x" : 1, "y": 2, "z": 3], two: ["x": 4, "y": 5, "z": 6]))
+print(pointAdd(["x" : 1, "y": nil, "z": 3], two: ["x": 4, "y": 5, "z": nil]))
+
+func pointSub(one: [String: Double?], two: [String: Double?]) -> [String: Double] {
+    var result = Dictionary<String, Double>()
+    
+    for (str, num) in one {
+        result[str] = 0
+        if num != nil {
+            result[str]! += num!
+        }
+    }
+    
+    for (str, num) in two {
+        if num != nil {
+            result[str]! -= num!
+        }
+    }
+    return result
+}
+
+print("pointAdd Tests")
+print(pointSub(["x" : 1, "y": 2, "z": 3], two: ["x": 4, "y": 5, "z": 6]))
+print(pointSub(["x" : 1, "y": nil, "z": 3], two: ["x": 4, "y": 5, "z": nil]))

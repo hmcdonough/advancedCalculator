@@ -165,6 +165,9 @@ func pointAdd(one: [String: Double?], two: [String: Double?]) -> [String: Double
     }
     
     for (str, num) in two {
+        if result[str] == nil {
+            result[str] = 0
+        }
         if num != nil {
             result[str]! += num!
         }
@@ -175,6 +178,7 @@ func pointAdd(one: [String: Double?], two: [String: Double?]) -> [String: Double
 print("pointAdd Tests")
 print(pointAdd(["x" : 1, "y": 2, "z": 3], two: ["x": 4, "y": 5, "z": 6]))
 print(pointAdd(["x" : 1, "y": nil, "z": 3], two: ["x": 4, "y": 5, "z": nil]))
+print(pointAdd(["x" : 1, "z": 3], two: ["x": 4, "y": 5]))
 
 func pointSub(one: [String: Double?], two: [String: Double?]) -> [String: Double] {
     var result = Dictionary<String, Double>()
@@ -187,6 +191,9 @@ func pointSub(one: [String: Double?], two: [String: Double?]) -> [String: Double
     }
     
     for (str, num) in two {
+        if result[str] == nil {
+            result[str] = 0
+        }
         if num != nil {
             result[str]! -= num!
         }
@@ -197,3 +204,4 @@ func pointSub(one: [String: Double?], two: [String: Double?]) -> [String: Double
 print("pointAdd Tests")
 print(pointSub(["x" : 1, "y": 2, "z": 3], two: ["x": 4, "y": 5, "z": 6]))
 print(pointSub(["x" : 1, "y": nil, "z": 3], two: ["x": 4, "y": 5, "z": nil]))
+print(pointSub(["x" : 1, "z": 3], two: ["x": 4, "y": 5]))
